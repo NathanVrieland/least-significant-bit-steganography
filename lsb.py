@@ -5,10 +5,21 @@ from PIL import Image
 import numpy as np
 
 def main():
-    if len(sys.argv) == 3:
-        encode(sys.argv[1], sys.argv[2])
-    elif len(sys.argv) == 2:
-        decode(sys.argv[1])
+    if len(sys.argv) > 1:
+        if sys.argv[1] == "-e" or sys.argv[1] == "--encode":
+            if len(sys.argv) > 3:
+                encode(sys.argv[2], sys.argv[3])
+            else:
+                message = input(">> ")
+                encode(sys.argv[2], message)
+        elif sys.argv[1] == "-d" or sys.argv[1] == "--decode":
+            decode(sys.argv[2])
+        else:
+            print(f"option '{sys.argv[1]}' not recognized")
+            printhelp()
+    else:
+        printhelp()
+        
 
 def encode(image_path, message):
     image = Image.open(image_path)
@@ -56,6 +67,12 @@ def text_to_bitstring(text):
             bitchar = '0' + bitchar
         bitstring += bitchar
     return bitstring
+
+def printhelp():
+    print("usage: lsb <option> <filename> <message>")
+    print("options:")
+    print("\t-e --encode: <filename> <message>")
+    print("\t-d --decode: <filename>")
 
 if __name__ == "__main__":
     main()
