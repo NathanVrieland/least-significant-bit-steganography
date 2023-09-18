@@ -71,8 +71,8 @@ def text_to_bitstring(text):
 def printhelp():
     print("usage: lsb <option> <filename> <message>")
     print("options:")
-    print("\t-e --encode: <filename> <message>")
-    print("\t-d --decode: <filename>")
+    print("\t-e, --encode: <filename> <message>")
+    print("\t-d, --decode: <filename>")
 
 if __name__ == "__main__":
     main()
