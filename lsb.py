@@ -10,8 +10,14 @@ def main():
             if len(sys.argv) > 3:
                 encode(sys.argv[2], sys.argv[3])
             else:
-                message = input(">> ")
-                encode(sys.argv[2], message)
+                if sys.stdin.isatty():
+                    message = input(">> ")
+                    encode(sys.argv[2], message)
+                else:
+                    message = ""
+                    for line in sys.stdin:
+                        message += line
+                    encode(sys.argv[2], message)
         elif sys.argv[1] == "-d" or sys.argv[1] == "--decode":
             decode(sys.argv[2])
         else:
