@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import sys
 from PIL import Image
 import numpy as np
@@ -42,6 +44,7 @@ def decode(image_path):
             print(byte.decode(), end='')
         except:
             break
+    print()
 
                 
 def text_to_bitstring(text):
